@@ -1,0 +1,42 @@
+### Obtener todos los usuarios
+GET http://micancha:4000/api/usuarios/
+
+
+### obtener un usuario por id
+GET http://micancha:4000/api/usuarios/27
+
+### Eliminar usuario - CON AUTORIZACIÓN
+PUT http://micancha:4000/api/usuarios/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsInVzdWFyaW8iOiJwcnVlYmFub2RlMSIsInBhc3N3b3JkIjoiJDJiJDA1JEc1WS4wa3BSVmkxY1cyYURLNU9LNXVNU255TVpFNS5wVGM0V3Z5dUVKTnNxWnBEQW1TYlU2IiwiaWF0IjoxNzY1OTQwNDExfQ.wg6AAUXkN5k2BKUNviU8o4ySPqJwvF88kTUVHt59vCg
+
+{
+    "id": 4
+}
+
+### agregar usuario
+POST  http://micancha:4000/api/usuarios/
+Content-Type: application/json
+
+{
+  "usuario": "admin",
+  "password": "admin",
+  "nombre": "admin prueba",
+  "correo_electronico": "nodeadmin2@ejemplo.com",
+  "telefono": "123456789000",
+  "tipo_usuario": "admin"
+}
+
+
+### Autenticar usuario
+get  http://micancha:4000/api/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "node d",
+  "password": "node"
+}
+
+### Obtener mi usuario - CON AUTORIZACIÓN
+GET http://localhost:4000/api/canchas/mis-reservas
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsI…cyM30.3A1VRO1iboLVTt_8cUa5USQYofGHr5Hfit_P71fLepw
