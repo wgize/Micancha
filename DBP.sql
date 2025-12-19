@@ -194,6 +194,20 @@ CREATE TABLE cancha_servicios (
   FOREIGN KEY (cancha_id) REFERENCES canchas(id) ON DELETE CASCADE,
   FOREIGN KEY (servicio_id) REFERENCES servicios(id) ON DELETE CASCADE
 );
+-- DROP TABLE antigua si existe
+DROP TABLE IF EXISTS reseñas;
+
+-- Crear tabla reseñas simplificada
+CREATE TABLE resenas(
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  usuario_id BIGINT NOT NULL,
+  cancha_id BIGINT NOT NULL,
+  comentario TEXT,
+  calificacion INT CHECK (calificacion BETWEEN 1 AND 5),
+  fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_reseña_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+  CONSTRAINT fk_reseña_cancha FOREIGN KEY (cancha_id) REFERENCES canchas(id)
+);
 
 -- 2. Inserta los servicios que usan los mocks
 INSERT INTO servicios (nombre) VALUES
@@ -215,13 +229,9 @@ CREATE INDEX idx_reservas_usuario ON reservas(usuario_id);
 CREATE INDEX idx_reservas_estado ON reservas(estado);
 CREATE INDEX idx_pagos_estado ON pagos(estado_pago);
 
-SELECT * FROM cancha_servicios ;
-SELECT id, nombre, estado FROM canchas;
--- imágenes
 INSERT INTO cancha_imagenes (cancha_id, url, orden) VALUES
 (1, 'https://i.pravatar.cc/400?u=losasfc', 0),
 (2, 'https://i.pravatar.cc/400?u=5taestrella', 0),
 (3, 'https://i.pravatar.cc/400?u=goalstation', 0);
 
-ALTER TABLE usuarios ADD COLUMN yape_qr TEXT NULL;
 select * from usuarios;

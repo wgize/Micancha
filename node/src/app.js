@@ -8,11 +8,12 @@ const usuarios = require("./modulos/usuarios/rutas");
 const auth = require("./modulos/auth/rutas");
 const canchas = require("./modulos/canchas/rutas");
 const reservasRouter = require("./modulos/reservas/rutas");
-const reseñas = require("./modulos/reseñas");
+const reseñas = require("./modulos/resenas");
 const favoritos = require("./modulos/favoritos/rutas");
 const error = require("./red/errors");
 const dueno = require("./modulos/dueno/rutas");
 const app = express();
+//const { review } = require("./modulos/reviews/routes");
 // CORS
 app.use(
   cors({
@@ -36,10 +37,13 @@ app.use("/api/usuarios", usuarios);
 app.use("/api/auth", auth);
 app.use("/api/canchas", canchas);
 app.use("/api/reservas", reservasRouter);
-app.use("/api/reseñas", reseñas);
+app.use("/api/resenas", reseñas);
 app.use("/api/favoritos", favoritos);
-app.use("/dueno", dueno);
-app.use("/uploads", express.static(path.resolve("uploads")));
+app.use("/api/dueno", dueno);
+//app.use("/api/reviews", review);
+app.use("/uploads", express.static(path.resolve(process.cwd(), "uploads")));
+console.log("Uploads path:", path.resolve(process.cwd(), "uploads"));
+
 // Ruta 404 - debe ir ANTES del error handler
 app.use((req, res, next) => {
   const error = new Error(`Ruta no encontrada: ${req.originalUrl}`);

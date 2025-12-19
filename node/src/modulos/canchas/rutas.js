@@ -140,6 +140,36 @@ router.get("/ultimas", async (_req, res) => {
     res.status(500).json({ error: true, body: e.message });
   }
 });
+router.get("/:id", async (req, res) => {
+  try {
+    const canchaId = req.params.id;
+
+    const [cancha] = await db.queryRaw(
+      `SELECT c.id, c.nombre AS name, c.direccion AS location, c.precio_por_hora AS price, c.superficie AS surface,
+              c.servicios_adicionales AS services
+       FROM canchas c
+       WHERE c.id = ?`,
+      [canchaId]
+    );
+
+    if (!cancha)
+      return res
+        .status(404)
+        .json({ error: true, body: "Cancha no encontrada" });
+
+    const images = await db.queryRaw(
+      `SELECT url FROM cancha_imagenes WHERE cancha_id = ? ORDER BY orden ASC`,
+      [canchaId]
+    );
+
+    cancha.images = images.map((img) => img.url);
+
+    res.json({ error: false, body: cancha });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: true, body: e.message });
+  }
+});
 
 async function listar(req, res, next) {
   try {
