@@ -1,0 +1,16 @@
+# ===== FRONTEND (ignorado en rama backend) =====
+losas/
+
+# ===== DEPENDENCIAS NODE =====
+node/node_modules/
+
+# ===== VARIABLES DE ENTORNO =====
+
+
+# ===== LOGS =====
+
+
+# ===== SISTEMA / EDITOR =====
+.DS_Store
+Thumbs.db
+.vscode/
