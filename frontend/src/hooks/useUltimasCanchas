@@ -1,0 +1,15 @@
+// src/hooks/useUltimasCanchas.js
+import { useEffect, useState } from "react";
+import { getUltimasCanchas } from "../services/canchasService";
+
+export default function useUltimasCanchas() {
+  const [canchas, setCanchas] = useState([]);
+
+  useEffect(() => {
+    getUltimasCanchas()
+      .then(setCanchas)
+      .catch(() => setCanchas([]));
+  }, []);
+
+  return canchas;
+}

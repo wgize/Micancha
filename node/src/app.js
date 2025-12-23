@@ -12,6 +12,7 @@ const reseñas = require("./modulos/resenas");
 const favoritos = require("./modulos/favoritos/rutas");
 const error = require("./red/errors");
 const dueno = require("./modulos/dueno/rutas");
+const comprobante = require("./modulos/comprobantes/rutas");
 const app = express();
 //const { review } = require("./modulos/reviews/routes");
 // CORS
@@ -40,6 +41,8 @@ app.use("/api/reservas", reservasRouter);
 app.use("/api/resenas", reseñas);
 app.use("/api/favoritos", favoritos);
 app.use("/api/dueno", dueno);
+app.use("/api/comprobantes", comprobante);
+
 //app.use("/api/reviews", review);
 app.use("/uploads", express.static(path.resolve(process.cwd(), "uploads")));
 console.log("Uploads path:", path.resolve(process.cwd(), "uploads"));
