@@ -19,28 +19,31 @@ Crear y levantar la base de datos SQL con el nombre:
 
 CREATE DATABASE DBP;
 
-
-Ejecutar los scripts SQL del proyecto sobre esta base de datos antes de iniciar la aplicación.
+```
+ // Ejecutar los scripts SQL del proyecto sobre esta base de datos antes de iniciar la aplicación.
+```
 
 ### Backend
 
 Ubicarse en la carpeta del backend y ejecutar:
 
-cd back
+```
+cd node
 npm install
 npm run dev
 
+```
 
 El servidor backend quedará escuchando según la configuración definida en el proyecto.
 
 ### Frontend
 
 En otra terminal, ubicarse en la carpeta del frontend y ejecutar:
-
+```
 cd front
 npm install
 npm run dev
-
+```
 
 El frontend se iniciará en modo desarrollo y se conectará al backend configurado.
 
